@@ -9,6 +9,7 @@ import Sidebar from './Sidebar'
 import { useState } from 'react'
 import { useAuth } from '../../../hooks/useAuth'
 import Menu from '../../atoms/Menu'
+import { logoTp } from '../../../assets/images'
 
 const menu = [
   { id: 1, label: 'Profile', action: (nav) => nav('/profile') },
@@ -36,12 +37,21 @@ const Container = styled.nav`
   background-color: ${(props) => props.theme.colors.background.light};
   box-shadow: ${(props) => props.theme.shadows.low};
 `
-const Logo = styled.h2`
-  flex: 1;
-  user-select: none;
+const ImgContainer = styled.div`
+  height: 100%;
+  padding-inline: 1rem;
+  display: flex;
+  align-items: center;
   cursor: pointer;
-  color: ${(props) => props.theme.colors.text.main};
+  transition: all 0.3s ease;
+  &:hover {
+    background-color: ${(props) => props.theme.colors.background.main};
+  }
 `
+const Img = styled.img`
+  height: 80%;
+`
+
 // const SearchBar = styled.div`
 //   flex: 1;
 //   height: 100%;
@@ -109,7 +119,9 @@ const Navbar = () => {
 
   return (
     <Container>
-      <Logo onClick={() => navigate('/')}>BLOGG.</Logo>
+      <ImgContainer onClick={() => navigate('/')}>
+        <Img src={logoTp} />
+      </ImgContainer>
       {/* <SearchBar>
         <Field height='2rem' width='25rem' placeholder='Search' icon={<SearchRoundedIcon />} />
       </SearchBar> */}
