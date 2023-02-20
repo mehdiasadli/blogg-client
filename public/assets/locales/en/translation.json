@@ -1,0 +1,32 @@
+{
+    "__comment__": "COMMON",
+    "submit": "Submit",
+
+    "__comment__1": "AUTH",
+    "login": "Login",
+    "register": "Register",
+    "go_login": "Already have an account? Login",
+    "go_register": "Don't have an account? Register here",
+    "first_name": "First Name",
+    "last_name": "Last Name",
+    "username": "Username",
+    "password": "Password",
+    "confirm_password": "Confirm Password",
+    "logout": "Logout",
+
+    "__comment__2": "FEED",
+    "__comment__3": "PROFILE",
+
+    "__comment__0": "ALERTS",
+    "required_username": "Username is required",
+    "required_first_name": "First Name is required",
+    "required_last_name": "Last Name is required",
+    "required_password": "Password is required",
+    "required_confirm_password": "Confirm Password is required",
+    "min_password": "Password must be at least 7 characters",
+    "max_password": "Password must be between 7 and 30 characters",
+    "regex_lowcase_password": "Password must have a lowercase character",
+    "regex_upcase_password": "Password must have a uppercase character",
+    "regex_num_password": "Password must have a number",
+    "match_password": "Passwords must match"
+}
