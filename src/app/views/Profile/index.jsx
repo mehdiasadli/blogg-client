@@ -3,15 +3,10 @@ import { HR } from '../../../assets'
 import { useAuth } from '../../../hooks/useAuth'
 import { useProfile } from '../../../hooks/useProfile'
 import Button from '../../atoms/Button'
-import Pagination from '../../atoms/Pagination'
 import Skeleton from '../../atoms/Skeleton'
-import FeedSkeleton from '../../atoms/Skeleton/FeedSkeleton'
 import Text from '../../atoms/Text'
 import Title from '../../atoms/Title'
 import { NAV_HEIGHT } from '../../components/layouts/Navbar'
-import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded'
-import Modal from '../../atoms/Modal'
-import Field from '../../atoms/Field'
 import CollectionList from './CollectionList'
 import BlogList from './BlogList'
 import { useNavigate } from 'react-router-dom'
@@ -57,63 +52,13 @@ const UserItem = styled.div`
   align-items: center;
   justify-content: space-between;
 `
-const Wrapper = styled(Section)`
-  width: 70%;
-  @media (${(props) => props.theme.breakpoints.m}) {
-    width: 100%;
-  }
-`
-const List = styled.div`
-  position: relative;
-  padding-top: 1rem;
-  padding-bottom: 3rem;
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(3, 1fr);
-  @media (${(props) => props.theme.breakpoints.lg}) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  @media (${(props) => props.theme.breakpoints.sm}) {
-    grid-template-columns: repeat(1, 1fr);
-  }
-`
 
-const PaginationContainer = styled.div`
-  position: absolute;
-  bottom: 0;
-  padding: 0.5rem;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`
-
-const Header = styled.header`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-`
 const Logout = styled(Button)`
   @media (${(props) => props.theme.breakpoints.m}) {
     display: none;
   }
 `
-const AddNew = styled(Button)`
-  @media (${(props) => props.theme.breakpoints.m}) {
-    width: 50%;
-    height: 2.5rem;
-  }
-  @media (${(props) => props.theme.breakpoints.sm}) {
-    width: 40%;
-    font-size: 12px;
-    & div {
-      display: none;
-    }
-  }
-  @media (${(props) => props.theme.breakpoints.xsm}) {
-    font-size: 10px;
-  }
-`
+
 
 const Profile = () => {
   const navigate = useNavigate()

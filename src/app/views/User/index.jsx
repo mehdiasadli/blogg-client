@@ -74,6 +74,7 @@ const User = () => {
     if (username === user.username) {
       navigate('/profile')
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (

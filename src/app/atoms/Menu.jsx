@@ -3,7 +3,6 @@ import MenuItem from '@mui/material/MenuItem'
 import { useNavigate } from 'react-router-dom'
 import { useTheme } from 'styled-components'
 import { useAuth } from '../../hooks/useAuth'
-import { useDeleteBlog } from '../../hooks/useDeleteBlog'
 import Text from './Text'
 
 const Menu = ({ isOpen, setIsOpen, items, setModalOpen }) => {
