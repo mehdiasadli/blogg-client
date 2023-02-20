@@ -8,6 +8,7 @@ import { getUserByUsername } from '../../../services/user.api'
 import FeedSkeleton from '../../atoms/Skeleton/FeedSkeleton'
 import Text from '../../atoms/Text'
 import Title from '../../atoms/Title'
+import Html from '../../components/Html'
 import { NAV_HEIGHT } from '../../components/layouts/Navbar'
 import CollectionPost from '../Profile/CollectionPost'
 
@@ -74,11 +75,12 @@ const User = () => {
     if (username === user.username) {
       navigate('/profile')
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
     <Container>
+      <Html title={profile?.data?.username} />
       <UserSection>
         {isLoading ? (
           'Loading...'

@@ -1,6 +1,7 @@
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import styled, { useTheme } from 'styled-components'
 import { useGetBlog } from '../../../hooks/useGetBlog'
+import Html from '../../components/Html'
 import Title from '../../atoms/Title'
 import { count, parse } from '../../../utils/blog'
 import Text from '../../atoms/Text'
@@ -126,6 +127,7 @@ const Blog = () => {
     <BlogSkeleton />
   ) : (
     <Container>
+      <Html title={location?.state?.editMode ? 'Edit' : blog.title} />
       {location?.state?.editMode ? (
         <Field
           value={editMode.title}

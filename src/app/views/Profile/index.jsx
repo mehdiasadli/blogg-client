@@ -10,6 +10,7 @@ import { NAV_HEIGHT } from '../../components/layouts/Navbar'
 import CollectionList from './CollectionList'
 import BlogList from './BlogList'
 import { useNavigate } from 'react-router-dom'
+import Html from '../../components/Html'
 
 const Container = styled.main`
   padding: 1rem 2rem;
@@ -59,7 +60,6 @@ const Logout = styled(Button)`
   }
 `
 
-
 const Profile = () => {
   const navigate = useNavigate()
   const { user, logOut } = useAuth()
@@ -67,6 +67,7 @@ const Profile = () => {
 
   return (
     <Container>
+      <Html title={user.username} />
       <UserSection>
         <Title as='h2' family center>
           {user.firstName} {user.lastName}

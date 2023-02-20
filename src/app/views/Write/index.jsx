@@ -13,6 +13,7 @@ import Modal from '../../atoms/Modal'
 import Title from '../../atoms/Title'
 import Text from '../../atoms/Text'
 import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded'
+import Html from '../../components/Html'
 
 const Container = styled.div`
   margin-top: ${NAV_HEIGHT}rem;
@@ -88,6 +89,7 @@ const Write = () => {
 
   return (
     <Container>
+      <Html title={title || 'Write'} />
       <Header>
         <Field
           width={'20rem'}

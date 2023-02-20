@@ -7,6 +7,7 @@ import Skeleton from '../../atoms/Skeleton'
 import FeedSkeleton from '../../atoms/Skeleton/FeedSkeleton'
 import Text from '../../atoms/Text'
 import Title from '../../atoms/Title'
+import Html from '../../components/Html'
 import { NAV_HEIGHT } from '../../components/layouts/Navbar'
 import BlogPost from '../Feed/BlogPost'
 
@@ -62,13 +63,14 @@ const Collections = () => {
 
   return (
     <Container>
+      <Html title={blogs?.collection?.name} />
       {isLoading ? (
-        <Skeleton height='2rem' width='10rem' type='text' />
+        <Skeleton height='2.25rem' width={'50%'} type='text' />
       ) : (
         <Title family>
           {blogs.data.length
-            ? `Collection ${blogs.collection.name} by ${blogs.data[0].author.username}`
-            : `Collection ${blogs.collection.name}`}
+            ? `Collection: ${blogs.collection.name} by ${blogs.data[0].author.username}`
+            : `Collection: ${blogs.collection.name}`}
         </Title>
       )}
       <Wrapper>

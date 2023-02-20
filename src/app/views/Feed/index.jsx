@@ -7,6 +7,7 @@ import Pagination from '../../atoms/Pagination'
 import BlogPost from './BlogPost'
 import FeedSkeleton from '../../atoms/Skeleton/FeedSkeleton'
 import Text from '../../atoms/Text'
+import Html from '../../components/Html'
 
 const Container = styled.div`
   min-height: calc(100vh - ${NAV_HEIGHT}rem);
@@ -59,6 +60,7 @@ const Feed = () => {
 
   return (
     <Container>
+      <Html title={'Feed'} />
       {isLoading ? (
         <FeedSkeleton />
       ) : (

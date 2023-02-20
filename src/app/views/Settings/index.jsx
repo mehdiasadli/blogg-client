@@ -3,6 +3,7 @@ import { themes } from '../../../assets/theme'
 import { useColorTheme } from '../../../hooks/useColorTheme'
 import Select from '../../atoms/Select'
 import Text from '../../atoms/Text'
+import Html from '../../components/Html'
 import { NAV_HEIGHT } from '../../components/layouts/Navbar'
 
 const Container = styled.div`
@@ -64,6 +65,7 @@ const Settings = () => {
 
   return (
     <Container>
+      <Html title={'Settings'} />
       <Wrapper>
         <Item>
           <Text style={{ marginRight: '5rem' }}>Theme</Text>
