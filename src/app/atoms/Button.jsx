@@ -25,6 +25,7 @@ const Container = styled(motion.button)`
   gap: 0.2rem;
 
   box-shadow: ${(props) => props.theme.shadows.mid};
+
   border: none;
   border-radius: ${(props) => props.radius};
 

@@ -10,6 +10,7 @@ import Menu from '../../atoms/Menu'
 import Modal from '../../atoms/Modal'
 import { useDeleteBlog } from '../../../hooks/useDeleteBlog'
 import { useAuth } from '../../../hooks/useAuth'
+import { ROLE } from '../../../data'
 
 const Container = styled(motion.div)`
   padding: 1rem;
@@ -64,6 +65,14 @@ const IconContainer = styled.div`
     color: ${(props) => props.theme.colors.text.main};
   }
 `
+const Name = styled(Title)`
+  width: 10rem;
+  @media (${(props) => props.theme.breakpoints.sm}) {
+    width: 100%;
+  }
+  word-wrap: break-word;
+`
+
 const Icon = styled(MoreHorizRoundedIcon)``
 
 const BlogPost = ({ blog, profile = false, bg }) => {
@@ -88,7 +97,7 @@ const BlogPost = ({ blog, profile = false, bg }) => {
     setIsOpen(e.currentTarget)
   }
 
-  const isOwner = blog.author._id === user._id
+  const isOwner = blog.author._id === user._id || user.role.includes(ROLE.ADMIN)
 
   return (
     <Container bg={bg} profile={profile ? 'true' : 'false'}>
@@ -97,9 +106,7 @@ const BlogPost = ({ blog, profile = false, bg }) => {
         <Text italic>{moment(blog.createdAt).fromNow()}</Text>
       </Header>
       <Main onClick={() => navigate(`/blog/${blog._id}`)}>
-        <Title family>
-          {blog.title.length > 25 ? `${blog.title.slice(0, 25)}...` : blog.title}
-        </Title>
+        <Name family>{blog.title.length > 25 ? `${blog.title.slice(0, 25)}...` : blog.title}</Name>
       </Main>
       <Footer onClick={() => navigate(`/collection/${blog.collectionName._id}`)}>
         <Title family as='h4'>

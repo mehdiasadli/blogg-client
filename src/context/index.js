@@ -2,6 +2,7 @@ import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import { persistReducer, persistStore } from 'redux-persist'
+
 import storage from 'redux-persist/lib/storage'
 import thunk from 'redux-thunk'
 

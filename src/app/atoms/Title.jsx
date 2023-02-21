@@ -14,9 +14,9 @@ const Text = styled.h1`
   `}
 `
 
-const Title = ({ as = 'h1', color, children, family = null, center = false }) => {
+const Title = ({ as = 'h1', color, children, family = null, center = false, ...rest }) => {
   return (
-    <Text as={as} color={color} family={family} center={center ? 'true' : 'false'}>
+    <Text as={as} color={color} family={family} center={center ? 'true' : 'false'} {...rest}>
       {children}
     </Text>
   )

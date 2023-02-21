@@ -1,27 +1,12 @@
 import axios from 'axios'
-import { tokenKey, BASE } from '.'
+import { BASE, intercept } from '.'
 
 const blogService = axios.create({
   baseURL: BASE + '/blog'
 })
 
 blogService.interceptors.request.use((config) => {
-  const user = JSON.parse(JSON.parse(localStorage.getItem('persist:root'))?.auth)?.user
-
-  if (!user) {
-    config.headers[tokenKey] = ''
-    return
-  }
-
-  const token = user.token
-  if (!token) {
-    config.headers[tokenKey] = ''
-    return
-  }
-
-  config.headers[tokenKey] = token
-
-  return config
+  return intercept(config)
 })
 
 export const getAllBlogs = async (page = 1) => await blogService(`/all?page=${page}`)

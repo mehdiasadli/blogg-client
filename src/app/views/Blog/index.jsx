@@ -17,6 +17,12 @@ import { makeFilter } from '../../../utils/makeFilter'
 import { formats, modules } from '../../../data/quill'
 import Button from '../../atoms/Button'
 import { useEditBlog } from '../../../hooks/useEditBlog'
+import EditRoundedIcon from '@mui/icons-material/EditRounded'
+import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded'
+import { useDeleteBlog } from '../../../hooks/useDeleteBlog'
+import Modal from '../../atoms/Modal'
+import { useAuth } from '../../../hooks/useAuth'
+import { ROLE } from '../../../data'
 
 const Container = styled.main`
   padding: 1rem 2rem;
@@ -85,6 +91,24 @@ const Buttons = styled.div`
   gap: 1rem;
   width: 100%;
 `
+const Actions = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  @media (${(props) => props.theme.breakpoints.sm}) {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+`
+const Header = styled.header`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`
+const T = styled(Title)`
+  width: 50%;
+  word-wrap: break-word;
+`
 
 const Blog = () => {
   const navigate = useNavigate()
@@ -92,7 +116,11 @@ const Blog = () => {
   const { id } = useParams()
   const { blog, isLoading } = useGetBlog(id)
   const { colors, shadows } = useTheme()
+  const { user } = useAuth()
   const { mutate } = useEditBlog(leaveEditMode)
+
+  const [modalOpen, setModalOpen] = useState(false)
+  const { mutate: deleteBlog } = useDeleteBlog()
 
   useEffect(() => {
     if (blog) {
@@ -112,8 +140,21 @@ const Blog = () => {
     setEditMode((prev) => ({ ...prev, [name]: value }))
   }
 
-  function leaveEditMode () {
+  function enterEditMode() {
+    location.state = {
+      editMode: true
+    }
+    setEditMode({
+      title: blog.title,
+      content: blog.content
+    })
+  }
+  function leaveEditMode() {
     navigate(location.pathname, {})
+  }
+
+  function close() {
+    setModalOpen(false)
   }
 
   useEffect(() => {
@@ -135,7 +176,24 @@ const Blog = () => {
           placeholder={'NAME'}
         />
       ) : (
-        <Title family>{blog.title}</Title>
+        <Header>
+          <T family>{blog.title}</T>
+          {(blog.author._id === user._id || user.role.includes(ROLE.ADMIN)) && (
+            <Actions>
+              <Button width='8rem' height='2rem' icon={<EditRoundedIcon />} onClick={enterEditMode}>
+                Edit
+              </Button>
+              <Button
+                width='8rem'
+                height='2rem'
+                icon={<DeleteRoundedIcon />}
+                onClick={() => setModalOpen(true)}
+              >
+                Delete
+              </Button>
+            </Actions>
+          )}
+        </Header>
       )}
       <Text family>
         Written by:{' '}
@@ -185,6 +243,17 @@ const Blog = () => {
           </Button>
         </Buttons>
       )}
+      <Modal
+        confirmLabel='Delete'
+        open={modalOpen}
+        close={close}
+        onConfirm={() => {
+          deleteBlog(blog._id)
+          navigate(-1, { replace: true })
+        }}
+      >
+        <Title as='h3'>Are you sure to delete?</Title>
+      </Modal>
     </Container>
   )
 }

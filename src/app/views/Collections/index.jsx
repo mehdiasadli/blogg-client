@@ -55,7 +55,6 @@ const Collections = () => {
   const { colors } = useTheme()
 
   const { blogs, isLoading } = useCollectionBlogs(page, id)
-  console.log(blogs)
 
   const handlePaginate = (_, value) => {
     setPage(value)
