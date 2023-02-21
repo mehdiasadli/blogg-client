@@ -9,7 +9,7 @@ import { ROLE } from '../../../data'
 import { useState } from 'react'
 import Menu from '../../atoms/Menu'
 import Modal from '../../atoms/Modal'
-import {useDeleteCollection } from '../../../hooks/useDeleteCollection'
+import { useDeleteCollection } from '../../../hooks/useDeleteCollection'
 import MoreHorizRoundedIcon from '@mui/icons-material/MoreHorizRounded'
 
 const Container = styled(motion.div)`
@@ -61,11 +61,9 @@ const IconContainer = styled.div`
   }
 `
 const Icon = styled(MoreHorizRoundedIcon)``
+
 const CollectionPost = ({ coll }) => {
-  const items = [
-    { id: 1, label: 'EditColl', link: coll._id },
-    { id: 2, label: 'Delete' }
-  ]
+  const items = [{ id: 1, label: 'Delete' }]
 
   const navigate = useNavigate()
   const { user } = useAuth()
