@@ -6,7 +6,7 @@ import { NAV_HEIGHT } from '../../components/layouts/Navbar'
 import Select from '../../atoms/Select'
 import Spinner from '../../atoms/Spinner'
 import { useWrite } from '../../../hooks/useWrite'
-import 'react-quill/dist/quill.snow.css'
+import 'react-quill/dist/quill.bubble.css'
 import { formats, modules } from '../../../data/quill'
 import { makeFilter } from '../../../utils/makeFilter'
 import Modal from '../../atoms/Modal'
@@ -29,25 +29,11 @@ const Container = styled.div`
 `
 const Wrapper = styled(ReactQuill)`
   box-shadow: ${(props) => props.shadows.low};
+  background: ${(props) => props.colors.background.dark};
+  border-radius: 3px;
 
   padding: 0;
-  & .ql-toolbar {
-    border: none !important;
-    border-radius: 3px 3px 0 0;
-    background-color: ${(props) => props.colors.background.dark};
-  }
-
-  & .ql-toolbar span {
-    color: ${(props) => props.colors.text.main};
-  }
-  & .ql-toolbar .ql-stroke {
-    ${(props) => props.result};
-  }
-  & .ql-container {
-    border-radius: 0 0 3px 3px;
-    border: none !important;
-    background-color: ${(props) => props.colors.background.light};
-  }
+  z-index: 10;
 `
 const Header = styled.header`
   display: flex;
@@ -111,7 +97,7 @@ const Write = () => {
         colors={colors}
         shadows={shadows}
         result={makeFilter(colors.text.main)}
-        theme='snow'
+        theme='bubble'
         value={content}
         onChange={(v) => handleChange(v, 'content')}
         modules={modules}

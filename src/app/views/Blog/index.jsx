@@ -11,7 +11,7 @@ import { NAV_HEIGHT } from '../../components/layouts/Navbar'
 import { HR } from '../../../assets/'
 import Field from '../../atoms/Field'
 import { useEffect, useState } from 'react'
-import 'react-quill/dist/quill.snow.css'
+import 'react-quill/dist/quill.bubble.css'
 import ReactQuill from 'react-quill'
 import { makeFilter } from '../../../utils/makeFilter'
 import { formats, modules } from '../../../data/quill'
@@ -64,25 +64,11 @@ const Bold = styled.strong`
 `
 const Wrapper = styled(ReactQuill)`
   box-shadow: ${(props) => props.shadows.low};
+  background: ${(props) => props.colors.background.dark};
+  border-radius: 3px;
 
   padding: 0;
-  & .ql-toolbar {
-    border: none !important;
-    border-radius: 3px 3px 0 0;
-    background-color: ${(props) => props.colors.background.dark};
-  }
-
-  & .ql-toolbar span {
-    color: ${(props) => props.colors.text.main};
-  }
-  & .ql-toolbar .ql-stroke {
-    ${(props) => props.result};
-  }
-  & .ql-container {
-    border-radius: 0 0 3px 3px;
-    border: none !important;
-    background-color: ${(props) => props.colors.background.light};
-  }
+  z-index: 10;
 `
 const Buttons = styled.div`
   display: flex;
@@ -215,7 +201,7 @@ const Blog = () => {
           colors={colors}
           shadows={shadows}
           result={makeFilter(colors.text.main)}
-          theme='snow'
+          theme='bubble'
           value={editMode.content}
           onChange={(v) => handleChange(v, 'content')}
           modules={modules}
